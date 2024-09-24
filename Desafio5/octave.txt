@@ -1,0 +1,20 @@
+% Rango de valores para x1
+x1 = linspace(0, 3, 100);
+
+% Definir las dos ecuaciones
+x2_eq1 = (2 - 1.0001 * x1) / 1.0000;
+x2_eq2 = (2 - 1.0000 * x1) / 1.0000;
+
+% Graficar las rectas
+plot(x1, x2_eq1, 'r', 'LineWidth', 2); % Ecuación 1 en rojo
+hold on;
+plot(x1, x2_eq2, 'b--', 'LineWidth', 2); % Ecuación 2 en azul (línea discontinua)
+
+% Etiquetas de la gráfica
+xlabel('x_1');
+ylabel('x_2');
+title('Gráfica del sistema de ecuaciones');
+legend('1.0001x_1 + 1.0000x_2 = 2', '1.0000x_1 + 1.0000x_2 = 2');
+grid on;
+
+hold off;
