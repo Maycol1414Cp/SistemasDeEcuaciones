@@ -1,0 +1,54 @@
+% Definimos la matriz A y el vector b
+A = [0.999, 0.001, 0.001; 
+     0.001, 0.999, 0.001; 
+     0.001, 0.001, 0.999];
+b = [1; 1; 1];
+
+% Calculamos el determinante
+det_A = det(A);
+
+% Calculamos el número de condición
+cond_A = cond(A);
+
+% Resolvemos el sistema
+x = A \ b;
+
+% Mostrar resultados
+fprintf('Determinante: %f\n', det_A);
+fprintf('Número de condición: %f\n', cond_A);
+fprintf('Solución: x = [%f; %f; %f]\n', x);
+
+% Ahora vamos a hacer un pequeño cambio en la matriz A
+A_new = A + [0.0001, 0, 0; 
+              0, 0.0001, 0; 
+              0, 0, 0.0001];
+
+% Resolvemos el nuevo sistema
+x_new = A_new \ b;
+
+% Mostrar la nueva solución
+fprintf('Nueva solución después del cambio: x = [%f; %f; %f]\n', x_new);
+% Crear una cuadrícula de puntos en el plano xy
+[x, y] = meshgrid(-1:0.1:2, -1:0.1:2);
+
+% Definir las ecuaciones en función de z
+z1 = (1 - 0.999*x - 0.001*y) / 0.001;
+z2 = (1 - 0.001*x - 0.999*y) / 0.001;
+z3 = (1 - 0.001*x - 0.001*y) / 0.999;
+
+% Graficar las superficies
+figure;
+hold on;
+surf(x, y, z1, 'FaceAlpha', 0.5, 'EdgeColor', 'none'); % Superficie 1
+surf(x, y, z2, 'FaceAlpha', 0.5, 'EdgeColor', 'none'); % Superficie 2
+surf(x, y, z3, 'FaceAlpha', 0.5, 'EdgeColor', 'none'); % Superficie 3
+
+% Configurar el gráfico
+xlabel('x');
+ylabel('y');
+zlabel('z');
+title('Sistema de Ecuaciones 3x3');
+grid on;
+axis tight;
+view(3); % Ver desde un ángulo tridimensional
+hold off;
